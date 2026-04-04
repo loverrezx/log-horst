@@ -87,14 +87,6 @@ local function getInventoryItems()
     local inventoryPanel = lp:FindFirstChild("PlayerGui") and lp.PlayerGui:FindFirstChild("InventoryPanelUI")
     
     if inventoryPanel then
-        if inventoryPanel:IsA("GuiObject") and inventoryPanel.Visible then
-            inventoryPanel.Visible = false
-        end
-        local mainFrame = inventoryPanel:FindFirstChild("MainFrame")
-        if mainFrame and mainFrame:IsA("GuiObject") and mainFrame.Visible then
-            mainFrame.Visible = false
-        end
-
         local storage = inventoryPanel:FindFirstChild("MainFrame")
             and inventoryPanel.MainFrame:FindFirstChild("Frame")
             and inventoryPanel.MainFrame.Frame:FindFirstChild("Content")
@@ -165,19 +157,19 @@ local function updateDescription()
     local backpackItems = getBackpackItems()
     local parts = {}
     
-    table.insert(parts, "Lv : " .. lv)
-    table.insert(parts, "Money : " .. formatCompactNumber(money))
-    table.insert(parts, "Gems : " .. formatCompactNumber(gems))
-    table.insert(parts, "Bounty : " .. formatCompactNumber(bounty))
+    table.insert(parts, "🎚️ : " .. lv)
+    table.insert(parts, "💰 : " .. formatCompactNumber(money))
+    table.insert(parts, "💎 : " .. formatCompactNumber(gems))
+    table.insert(parts, "💀 : " .. formatCompactNumber(bounty))
     
     if #backpackItems > 0 then
-        table.insert(parts, "item use : " .. table.concat(backpackItems, ", "))
+        table.insert(parts, "🎒 : " .. table.concat(backpackItems, ", "))
     end
 
     if #inventoryItems > 0 then
-        table.insert(parts, "Item : " .. table.concat(inventoryItems, ", "))
+        table.insert(parts, "📦 : " .. table.concat(inventoryItems, ", "))
     else
-        table.insert(parts, "Item : None")
+        table.insert(parts, "📦 : None")
     end
     
     local message = table.concat(parts, " | ")
